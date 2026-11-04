@@ -250,3 +250,5 @@ O password spraying consiste, geralmente, em testar uma ou poucas senhas comuns 
 - Desabilitar contas e serviços desnecessários.
 
 **Conclusão:** a simulação evidenciou os riscos associados a credenciais fracas e à exposição de serviços de autenticação sem controles adequados.
+
+### 5. Simulação de força bruta em formulário web — DVWA
