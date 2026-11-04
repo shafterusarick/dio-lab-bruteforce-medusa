@@ -34,3 +34,43 @@ Foi utilizado o Medusa para realizar uma simulação de tentativas de autentica�
 O experimento demonstrou como credenciais descobertas por tentativas automatizadas podem permitir acesso a uma conta, dependendo das proteções de autenticação existentes.
 
 **Evidência:** acesso confirmado durante o laboratório, sem captura de tela registrada.
+
+
+
+## Testes realizados
+
+### 1. Reconhecimento e identificação de serviços com Nmap
+
+Inicialmente, utilizei o Nmap para identificar serviços disponíveis na máquina Metasploitable 2, localizada no endereço `192.168.251.31`, dentro da rede virtual do laboratório.
+
+**Comando utilizado:**
+
+```bash
+nmap -sV -p 21,22,80,445,139 192.168.251.31
+```
+
+**Explicação dos parâmetros:**
+
+- `-sV`: tenta identificar os serviços e suas respectivas versões.
+- `-p`: especifica as portas que serão verificadas.
+- `192.168.251.31`: endereço IP da máquina Metasploitable 2.
+
+**Resultados obtidos:**
+
+| Porta | Serviço | Software identificado |
+|---|---|---|
+| 21 | FTP | vsftpd 2.3.4 |
+| 22 | SSH | OpenSSH 4.7p1 |
+| 80 | HTTP | Apache httpd 2.2.8 |
+| 139 | SMB | Samba smbd 3.X–4.X |
+| 445 | SMB | Samba smbd 3.X–4.X |
+
+**Análise:**
+
+O escaneamento identificou serviços acessíveis que poderiam ser investigados nas etapas seguintes.
+
+A identificação dos serviços FTP e SMB foi especialmente importante para o laboratório, pois esses protocolos foram utilizados nos testes posteriores de autenticação e enumeração.
+
+As versões identificadas também permitem pesquisar possíveis vulnerabilidades conhecidas, embora a presença de uma versão específica não comprove, isoladamente, que o sistema seja vulnerável.
+
+**Resultado:** identificação dos principais serviços de rede utilizados durante o laboratório.
