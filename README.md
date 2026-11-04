@@ -251,6 +251,7 @@ A captura de tela apresenta o comando utilizado para configurar a simulação de
 Após a execução do teste, consegui identificar uma combinação válida de credenciais e autenticar manualmente na conta de administrador da aplicação pelo navegador do Kali Linux.
 
 A autenticação foi confirmada durante o laboratório, porém não foi registrada uma captura de tela do painel administrativo.
+
 ## Medidas de prevenção
 
 Os testes realizados demonstraram como credenciais fracas ou previsíveis podem representar riscos para serviços de autenticação.
