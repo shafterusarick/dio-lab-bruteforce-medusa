@@ -252,3 +252,27 @@ O password spraying consiste, geralmente, em testar uma ou poucas senhas comuns 
 **Conclusão:** a simulação evidenciou os riscos associados a credenciais fracas e à exposição de serviços de autenticação sem controles adequados.
 
 ### 5. Simulação de força bruta em formulário web — DVWA
+## Medidas de prevenção
+
+Os testes realizados demonstraram como credenciais fracas ou previsíveis podem representar riscos para serviços de autenticação.
+
+Para reduzir a exposição a ataques de força bruta, password spraying e outras tentativas automatizadas, algumas medidas recomendadas são:
+
+- **Senhas fortes e exclusivas:** utilizar senhas difíceis de adivinhar e evitar reutilização entre serviços.
+- **Autenticação multifator (MFA):** exigir um segundo fator de autenticação quando disponível.
+- **Limitação de tentativas:** implementar controles de taxa e políticas adequadas de bloqueio de contas.
+- **Monitoramento:** registrar e analisar falhas de autenticação, identificando comportamentos suspeitos.
+- **Controle de acesso:** restringir serviços como FTP e SMB aos usuários e dispositivos autorizados.
+- **Atualizações de segurança:** manter sistemas e serviços atualizados.
+
+Essas medidas podem ser combinadas para dificultar tentativas automatizadas de autenticação e reduzir seus impactos.
+
+## Conclusão
+
+O projeto permitiu aplicar conhecimentos de reconhecimento, enumeração e testes de autenticação em um ambiente virtual controlado.
+
+Utilizando ferramentas como Nmap, enum4linux, smbclient e Medusa, foi possível identificar serviços de rede, examinar compartilhamentos SMB e realizar simulações de ataques a credenciais.
+
+Os testes também demonstraram a importância da configuração adequada dos serviços, de políticas de autenticação seguras e do monitoramento de tentativas de acesso.
+
+O laboratório foi desenvolvido exclusivamente para fins educacionais, como parte do Bootcamp Santander — Cibersegurança do Zero à Prática, da DIO.
