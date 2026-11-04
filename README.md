@@ -74,3 +74,41 @@ A identificação dos serviços FTP e SMB foi especialmente importante para o la
 As versões identificadas também permitem pesquisar possíveis vulnerabilidades conhecidas, embora a presença de uma versão específica não comprove, isoladamente, que o sistema seja vulnerável.
 
 **Resultado:** identificação dos principais serviços de rede utilizados durante o laboratório.
+
+
+### 2. Teste de autenticação no serviço FTP
+
+Após identificar a porta 21 aberta durante o escaneamento com Nmap, realizei um teste de autenticação manual no serviço FTP do Metasploitable 2.
+
+O objetivo foi verificar a possibilidade de estabelecer uma conexão e autenticar um usuário no servidor.
+
+**Comando utilizado:**
+
+```bash
+ftp 192.168.251.31
+```
+
+**Procedimento:**
+
+1. Estabeleci uma conexão com o serviço FTP pela porta 21.
+2. Informei o usuário `msfadmin`.
+3. Digitei a senha de treinamento configurada no Metasploitable 2.
+4. O servidor confirmou a autenticação.
+
+**Resultado observado:**
+
+```text
+220 (vsFTPd 2.3.4)
+230 Login successful.
+Remote system type is UNIX.
+```
+
+A mensagem `230 Login successful` confirmou que as credenciais fornecidas foram aceitas pelo servidor FTP.
+
+**Análise de segurança:**
+
+O FTP tradicional não criptografa as credenciais transmitidas durante a autenticação, representando um risco em redes não confiáveis.
+
+Em ambientes profissionais, alternativas como SFTP ou FTPS devem ser consideradas, juntamente com controles de acesso e políticas de senhas adequadas.
+
+**Evidência:** autenticação realizada com sucesso no ambiente de laboratório. ![Autenticação FTP no Metasploitable 2](images/02-ftp-login.png)
