@@ -252,6 +252,17 @@ O password spraying consiste, geralmente, em testar uma ou poucas senhas comuns 
 **Conclusão:** a simulação evidenciou os riscos associados a credenciais fracas e à exposição de serviços de autenticação sem controles adequados.
 
 ### 5. Simulação de força bruta em formulário web — DVWA
+O DVWA foi acessado pelo navegador do Kali Linux,
+utilizando o Metasploitable 2 como servidor.
+
+Foi utilizado o Medusa para simular tentativas
+automatizadas de autenticação.
+
+**Resultado:** foram identificadas credenciais válidas,
+permitindo autenticação na conta de administrador
+da aplicação.
+
+**Evidência:** teste realizado sem captura de tela.
 ## Medidas de prevenção
 
 Os testes realizados demonstraram como credenciais fracas ou previsíveis podem representar riscos para serviços de autenticação.
