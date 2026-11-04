@@ -188,3 +188,65 @@ Em ambientes corporativos, configurações inadequadas podem expor informações
 - Monitorar tentativas de autenticação suspeitas.
 
 **Resultado:** enumeração realizada com sucesso, permitindo identificar informações do grupo de trabalho e compartilhamentos disponíveis no Metasploitable 2.
+
+### 4. Simulação de ataques a credenciais SMB com Medusa
+
+Após realizar a enumeração SMB, utilizei o Medusa para simular tentativas automatizadas de autenticação no Metasploitable 2.
+
+O objetivo foi compreender como combinações de usuários e senhas podem ser testadas em serviços de rede e identificar os riscos associados a credenciais fracas.
+
+#### 4.1. Preparação das wordlists
+
+Foram utilizadas listas de usuários e senhas de treinamento, armazenadas nos arquivos:
+
+- `wordlists/smb_users.txt`
+- `wordlists/senhas_spray.txt`
+- `wordlists/senhas_spray2.txt`
+
+As listas continham combinações fictícias utilizadas exclusivamente no laboratório.
+
+#### 4.2. Execução do teste
+
+**Comando utilizado:**
+
+```bash
+medusa -h 192.168.251.31 -U smb_users.txt -P senhas_spray.txt -M smbnt -t 2 -f
+```
+
+**Explicação dos parâmetros:**
+
+- `-h`: endereço da máquina de destino.
+- `-U`: arquivo contendo os nomes de usuários.
+- `-P`: arquivo contendo as senhas utilizadas no teste.
+- `-M smbnt`: módulo do Medusa responsável pela autenticação SMB.
+- `-t 2`: limita o número de tarefas simultâneas.
+- `-f`: encerra os testes contra o host após encontrar uma combinação válida.
+
+#### 4.3. Resultado obtido
+
+Durante a execução, o Medusa realizou tentativas de autenticação com os usuários e senhas definidos nas wordlists.
+
+A ferramenta retornou a mensagem `ACCOUNT FOUND`, indicando que uma das combinações foi aceita pelo serviço SMB.
+
+A credencial encontrada pertencia ao usuário de treinamento `msfadmin`, utilizado no ambiente Metasploitable 2.
+
+**Resultado:** identificação de uma combinação válida de credenciais durante a simulação de ataque automatizado ao serviço SMB.
+
+#### 4.4. Análise de segurança
+
+O laboratório demonstrou como credenciais previsíveis podem ser identificadas por ferramentas que automatizam tentativas de autenticação.
+
+A utilização de múltiplos usuários e senhas permite simular diferentes estratégias de ataque. Entretanto, o teste executado utilizou uma lista de senhas e não representa necessariamente um password spraying estrito.
+
+O password spraying consiste, geralmente, em testar uma ou poucas senhas comuns contra vários usuários, procurando evitar um número elevado de tentativas consecutivas por conta.
+
+**Medidas de prevenção recomendadas:**
+
+- Utilizar senhas fortes e exclusivas.
+- Implementar autenticação multifator quando suportada.
+- Restringir o acesso ao serviço SMB.
+- Monitorar falhas e tentativas repetidas de autenticação.
+- Configurar políticas adequadas de bloqueio ou limitação de tentativas.
+- Desabilitar contas e serviços desnecessários.
+
+**Conclusão:** a simulação evidenciou os riscos associados a credenciais fracas e à exposição de serviços de autenticação sem controles adequados.
