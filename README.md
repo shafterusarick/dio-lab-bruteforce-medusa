@@ -23,20 +23,6 @@ O laboratório tem como objetivos:
 
 Todos os testes foram realizados em máquinas destinadas ao aprendizado, sem envolver sistemas de terceiros.
 
-### Simulação de força bruta em formulário web — DVWA
-
-O DVWA (*Damn Vulnerable Web Application*) foi acessado pelo navegador do Kali Linux, utilizando a máquina Metasploitable 2 como servidor.
-
-Foi utilizado o Medusa para realizar uma simulação de tentativas de autenticação com combinações de usuários e senhas no ambiente controlado.
-
-**Resultado:** o Medusa identificou credenciais válidas durante a simulação de força bruta no formulário web do DVWA. A combinação encontrada foi utilizada para autenticar com sucesso na conta de administrador da aplicação.
-
-O experimento demonstrou como credenciais descobertas por tentativas automatizadas podem permitir acesso a uma conta, dependendo das proteções de autenticação existentes.
-
-**Evidência:** acesso confirmado durante o laboratório, sem captura de tela registrada.
-
-
-
 ## Testes realizados
 
 ### 1. Reconhecimento e identificação de serviços com Nmap
@@ -252,17 +238,19 @@ O password spraying consiste, geralmente, em testar uma ou poucas senhas comuns 
 **Conclusão:** a simulação evidenciou os riscos associados a credenciais fracas e à exposição de serviços de autenticação sem controles adequados.
 
 ### 5. Simulação de força bruta em formulário web — DVWA
-O DVWA foi acessado pelo navegador do Kali Linux,
-utilizando o Metasploitable 2 como servidor.
+O DVWA foi acessado pelo navegador do Kali Linux, utilizando o Metasploitable 2 como servidor.
 
-Foi utilizado o Medusa para simular tentativas
-automatizadas de autenticação.
+Foi utilizado o Medusa para simular tentativas automatizadas de autenticação.
 
-**Resultado:** foram identificadas credenciais válidas,
-permitindo autenticação na conta de administrador
-da aplicação.
+Resultado: foram identificadas credenciais válidas, permitindo autenticação na conta de administrador da aplicação.
 
-**Evidência:** teste realizado sem captura de tela.
+### Evidências do teste web:
+
+A captura de tela apresenta o comando utilizado para configurar a simulação de força bruta no formulário HTTP do DVWA com Medusa.
+
+Após a execução do teste, consegui identificar uma combinação válida de credenciais e autenticar manualmente na conta de administrador da aplicação pelo navegador do Kali Linux.
+
+A autenticação foi confirmada durante o laboratório, porém não foi registrada uma captura de tela do painel administrativo.
 ## Medidas de prevenção
 
 Os testes realizados demonstraram como credenciais fracas ou previsíveis podem representar riscos para serviços de autenticação.
