@@ -113,3 +113,78 @@ Em ambientes profissionais, alternativas como SFTP ou FTPS devem ser considerada
 
 **Evidência:** autenticação realizada com sucesso no ambiente de laboratório. <img width="513" height="158" alt="image" src="https://github.com/user-attachments/assets/cc524ea1-2d7c-456f-a320-36290048b051" />
 
+
+
+### 3. Enumeração SMB com enum4linux e smbclient
+
+Após identificar as portas 139 e 445 abertas no Metasploitable 2, realizei uma enumeração do serviço SMB para coletar informações sobre o ambiente.
+
+O SMB (*Server Message Block*) é um protocolo utilizado para compartilhamento de arquivos, impressoras e outros recursos de rede.
+
+#### 3.1. Enumeração com enum4linux
+
+**Comando utilizado:**
+
+```bash
+enum4linux -a 192.168.251.31 | tee enum4_output.txt
+```
+
+**Explicação:**
+
+- `enum4linux`: ferramenta utilizada para enumerar informações de serviços SMB.
+- `-a`: executa várias verificações de enumeração disponíveis na ferramenta.
+- `192.168.251.31`: IP do Metasploitable 2.
+- `| tee enum4_output.txt`: mostra a saída no terminal e também a salva em um arquivo de texto.
+
+**Resultados observados:**
+
+A ferramenta identificou informações do ambiente, incluindo:
+
+- Nome da máquina: `METASPLOITABLE`.
+- Grupo de trabalho: `WORKGROUP`.
+- Informações relacionadas ao serviço SMB.
+
+A saída completa foi registrada no arquivo `enum4_output.txt`.
+
+#### 3.2. Enumeração com smbclient
+
+**Comando utilizado:**
+
+```bash
+smbclient -L //192.168.251.31 -U msfadmin
+```
+
+O parâmetro `-L` solicita a listagem dos compartilhamentos disponíveis no servidor.
+
+O parâmetro `-U` especifica o usuário utilizado na autenticação.
+
+**Resultados observados:**
+
+Durante o teste, foram identificados os seguintes compartilhamentos:
+
+| Compartilhamento | Descrição |
+|---|---|
+| `print$` | Drivers de impressora |
+| `tmp` | Compartilhamento temporário |
+| `opt` | Compartilhamento denominado opt |
+| `msfadmin` | Diretório pessoal do usuário de treinamento |
+| `IPC$` | Recurso de comunicação entre processos |
+| `ADMIN$` | Compartilhamento administrativo anunciado pelo servidor |
+
+A listagem demonstrou que o servidor disponibilizava informações sobre seus recursos SMB.
+
+#### 3.3. Análise de segurança
+
+A enumeração SMB permite identificar informações sobre máquinas, grupos de trabalho, usuários e compartilhamentos, dependendo das configurações e permissões do servidor.
+
+Em ambientes corporativos, configurações inadequadas podem expor informações desnecessárias ou permitir acessos indevidos.
+
+**Medidas de prevenção recomendadas:**
+
+- Restringir o acesso ao SMB somente aos dispositivos necessários.
+- Configurar corretamente as permissões dos compartilhamentos.
+- Desabilitar compartilhamentos desnecessários.
+- Manter o Samba e o sistema operacional atualizados.
+- Monitorar tentativas de autenticação suspeitas.
+
+**Resultado:** enumeração realizada com sucesso, permitindo identificar informações do grupo de trabalho e compartilhamentos disponíveis no Metasploitable 2.
