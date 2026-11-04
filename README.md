@@ -111,4 +111,5 @@ O FTP tradicional não criptografa as credenciais transmitidas durante a autenti
 
 Em ambientes profissionais, alternativas como SFTP ou FTPS devem ser consideradas, juntamente com controles de acesso e políticas de senhas adequadas.
 
-**Evidência:** autenticação realizada com sucesso no ambiente de laboratório. ![Autenticação FTP no Metasploitable 2](images/02-ftp-login.png)
+**Evidência:** autenticação realizada com sucesso no ambiente de laboratório. <img width="513" height="158" alt="image" src="https://github.com/user-attachments/assets/cc524ea1-2d7c-456f-a320-36290048b051" />
+
